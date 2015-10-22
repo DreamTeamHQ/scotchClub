@@ -4,44 +4,84 @@
 	<meta charset="UTF-8">
 	<title>Scotch Club</title>
 	<link rel="stylesheet" href="styles/style.css">
+
+	<!-- Fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
+
+	<!-- Favicon -->
+	<link rel="icon" type="image/png" href="img/favicon.png" />
+
+	<!-- Mobile -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 <body>
 
 	<main class="clubHeader">
 		
-		<!-- This main will have a hero image, logo, 
-		name, graphics, blah blah blah -->
+		<div class="hero-info">
+			<img src="img/logo.png" alt="Scotch Club logo">
+			<h1>Scotch Club</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, praesentium, dignissimos! Repellat tempora ipsam, assumenda cumque veniam ex omnis ad, magni et reiciendis cupiditate a labore sed reprehenderit itaque! Enim!</p>
+			<h3>Choose your options below.</h3>
+		</div> <!-- /.hero-info -->
+
+
+
+
 
 	</main>
 
-	<form>
-		
-		<!-- This will be fixed.  User will be able to input
-		search criteria.  User will not have to return to home
-		page to search again -->
 
+	<!-- This will be fixed.  User will be able to input
+	search criteria.  User will not have to return to home
+	page to search again -->
+	<form class="submit-form">
+		<div class="wrapper">
+
+			<div class="input-left">
+
+				<p>Choose your price point</p>
+				<div class="price-input">
+					<div class="input-btn">
+						<input type="radio" name="price" id="under" value="over60">
+						<label for="under">under $60</label>
+					</div> <!-- /.price-btn -->
+					<div class="input-btn">
+						<input type="radio" name="price" id="over" value="under60">
+						<label for="over">over $60</label>
+					</div> <!-- /.price-btn -->
+				</div> <!-- /.price-input -->
+
+			</div> <!-- /.input-left -->
+
+
+			<div class="input-right">
+
+				<p>Select your type</p>
+				<div class="type-input">
+					<div class="input-btn">
+						<input type="radio" name="type" id="single" value="single">
+						<label for="single">Single Malt</label>
+					</div> <!-- /.input-btn -->
+					<div class="input-btn">
+						<input type="radio" name="type" id="blend" value="blend">
+						<label for="over">Blended</label>
+					</div> <!-- /.input-btn -->
+				</div> <!-- /.type-input -->
+
+			</div> <!-- /.input-left -->
+		
+
+		</div> <!-- /.wrapper -->
 	</form>
-
-	<section class='results'>
-		
-		<!-- This is where the search returns are -->
-
-	</section>
-
-	<!-- <h1>This is a title!</h1>
-
-	<p>This is not a title</p> -->
-	
-
-
-<footer>
-	<p>Site by Mike, Julian, and TomC &copy; 2015</p>
-</footer>
-
 
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="scripts/main.js"></script>
+
+	</script>
 </body>
 </html>

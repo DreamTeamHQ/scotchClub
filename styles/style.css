@@ -127,5 +127,116 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 * {
   box-sizing: border-box; }
 
+html {
+  font-size: 62.5%; }
+
 body {
-  background: blue; }
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.4rem;
+  line-height: 1;
+  margin: 0;
+  background: #FBFAF3; }
+
+img {
+  max-width: 100%; }
+
+a {
+  text-decoration: none;
+  padding: 0;
+  margin: 0; }
+
+ul {
+  padding: 0;
+  margin: 0; }
+
+li {
+  list-style: none;
+  margin: 0; }
+
+p {
+  margin: 0;
+  line-height: 1.4; }
+
+.wrapper {
+  max-width: 1024px;
+  margin: 0 auto; }
+
+main.clubHeader {
+  min-height: calc(100vh - 60px);
+  background: url(../img/hero.jpg) fixed center;
+  background-size: cover; }
+  main.clubHeader .hero-info {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -60%);
+            transform: translate(-50%, -60%);
+    text-align: center;
+    color: #FBFAF3; }
+    main.clubHeader .hero-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; }
+
+h1 {
+  color: #FBFAF3;
+  font-family: 'Playfair Display', serif;
+  font-size: 5em;
+  text-shadow: 2px 0 5px #381213;
+  margin: 10px 0 20px; }
+
+form .wrapper {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around; }
+
+form {
+  background: #381213;
+  position: fixed;
+  width: 100%;
+  bottom: 0px;
+  left: 0;
+  padding: 20px 0 30px;
+  z-index: 9999;
+  color: #FBFAF3; }
+  form .input-left, form .input-right {
+    width: 40%;
+    text-align: center; }
+  form p {
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif; }
+
+form .price-input, form .type-input {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  cursor: pointer; }
+
+form .input-btn {
+  padding: 15px;
+  border: 1px solid #FBFAF3;
+  text-align: center;
+  margin: 0 10px;
+  border-radius: 5px;
+  width: calc(50% - 20px);
+  transition: 0.3s; }
+  form .input-btn input[type="radio"] {
+    display: none; }
+
+form .input-btn:hover {
+  background: #FBFAF3;
+  color: #381213; }
