@@ -194,9 +194,9 @@ form .wrapper {
   -webkit-flex-direction: row;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-justify-content: space-around;
-      -ms-flex-pack: distribute;
-          justify-content: space-around; }
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between; }
 
 form {
   background: #381213;
@@ -240,3 +240,18 @@ form .input-btn {
 form .input-btn:hover {
   background: #FBFAF3;
   color: #381213; }
+
+form .input-btn:active {
+  background: #FBFAF3;
+  color: #381213; }
+
+form input[type=submit] {
+  font-family: 'Open Sans', sans-serif;
+  background: #FBFAF3;
+  color: #381213;
+  padding: 13px;
+  border: 1px solid #FBFAF3;
+  text-align: center;
+  margin: 37px 10px 0;
+  border-radius: 5px;
+  transition: 0.3s; }
