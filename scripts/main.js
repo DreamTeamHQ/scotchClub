@@ -71,7 +71,7 @@ scotchApp.displayScotch = function(lotsOfScotch){
 		var name = $('<h3>').addClass('scotchName').text(value.name);
 		var bottle = $('<img>').addClass('scotchBottle').attr('src',value.image_thumb_url);
 		var variety = $('<p>').addClass('scotchVariety').text(value.varietal);
-		var container = $('<div>').addClass('scotchInfo').attr('data-id', value.id).append(name,priceInDollars,bottle,variety);
+		var container = $('<div>').addClass('scotchInfo').attr('data-id', value.id).append(bottle,name,variety,priceInDollars);
 		$('.results').append(container);
 	});
 	scotchApp.mapScotch()

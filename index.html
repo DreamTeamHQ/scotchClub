@@ -29,7 +29,11 @@
 
 	</main>
 
-	<div class="results"></div>
+	<section class="results-container">
+		<div class="wrapper">
+			<div class="results"></div>
+		</div> <!-- /.wrapper -->
+	</section> <!-- /.results-container -->
 
 	<!-- This will be fixed.  User will be able to input
 	search criteria.  User will not have to return to home
@@ -43,11 +47,11 @@
 				<div class="price-input">
 					<div class="input-btn">
 						<input type="radio" name="price" id="under60" value="under60">
-						<label>under $60</label>
+						<label for="under60">under $60</label>
 					</div> <!-- /.price-btn -->
 					<div class="input-btn">
 						<input type="radio" name="price" id="over60" value="over60">
-						<label>over $60</label>
+						<label for="over60">over $60</label>
 					</div> <!-- /.price-btn -->
 				</div> <!-- /.price-input -->
 
@@ -59,12 +63,12 @@
 				<p>Select your type</p>
 				<div class="type-input">
 					<div class="input-btn">
-						<input type="radio" name="type" id="typeOption" value="single">
-						<label>Single Malt</label>
+						<input type="radio" name="type" id="typeSingle" value="single">
+						<label for="typeSingle">Single Malt</label>
 					</div> <!-- /.input-btn -->
 					<div class="input-btn">
-						<input type="radio" name="type" id="typeOption" value="blend">
-						<label>Blended</label>
+						<input type="radio" name="type" id="typeBlended" value="blend">
+						<label for="typeBlended">Blended</label>
 					</div> <!-- /.input-btn -->
 				</div> <!-- /.type-input -->
 
