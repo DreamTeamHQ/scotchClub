@@ -83,9 +83,9 @@ form .input-btn {
 	border-radius: 5px;
 	width: calc(50% - 20px);
 	transition: 0.3s;
-	// input[type="radio"] {
-	// 	display: none;
-	// }
+	input[type="radio"] {
+		display: none;
+	}
 }
 
 form .input-btn:hover {
