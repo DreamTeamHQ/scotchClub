@@ -4,16 +4,12 @@ scotchApp.apiKey = 'MDpiNWNjYzYyMi03NzY4LTExZTUtOWMxYi01M2MyMTlmYjk0MGU6UVA1bFky
 
 
 
-
-
 scotchApp.formSubmit = function(){
 	$('.submit-form').on('submit',function(e){
 		e.preventDefault();
 		scotchApp.findScotch();
 	});
 };
-
-
 
 
 
@@ -35,8 +31,6 @@ scotchApp.findScotch = function(){
 
 
 
-
-
 scotchApp.filterPrice = function(result){
 	var threshold = 60
 	var bottleFilter = result.filter(function(value){
@@ -53,6 +47,7 @@ scotchApp.filterPrice = function(result){
 };
 
 
+
 scotchApp.filterType = function(result){
 	var typeFilter = result.filter(function(value){
 		if($('input[value=single]:checked').length > 0){
@@ -67,9 +62,6 @@ scotchApp.filterType = function(result){
 
 
 
-
-
-
 scotchApp.displayScotch = function(lotsOfScotch){
 	$('.clubHeader').hide();
 	$('.results').html('');
@@ -79,10 +71,25 @@ scotchApp.displayScotch = function(lotsOfScotch){
 		var name = $('<h3>').addClass('scotchName').text(value.name);
 		var bottle = $('<img>').addClass('scotchBottle').attr('src',value.image_thumb_url);
 		var variety = $('<p>').addClass('scotchVariety').text(value.varietal);
-		var container = $('<div>').addClass('scotchInfo').append(name,priceInDollars,bottle,variety);
+		var container = $('<div>').addClass('scotchInfo').attr('data-id', value.id).append(name,priceInDollars,bottle,variety);
 		$('.results').append(container);
 	});
+	scotchApp.mapScotch()
 };
+
+
+
+scotchApp.mapScotch = function(){
+	$('.scotchInfo').on('click',function(){
+		scotchApp.searchID = $(this).data('id');
+		console.log(scotchApp.searchID)
+	});
+}
+
+
+
+
+
 
 
 
@@ -102,8 +109,6 @@ scotchApp.init = function(){
 	// 		var typeOption = $(this).val();
 	// 	});
 	};
-
-
 
 
 
