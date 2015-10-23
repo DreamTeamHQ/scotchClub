@@ -74,17 +74,57 @@ scotchApp.displayScotch = function(lotsOfScotch){
 		var container = $('<div>').addClass('scotchInfo').attr('data-id', value.id).append(bottle,name,variety,priceInDollars);
 		$('.results').append(container);
 	});
-	scotchApp.mapScotch()
+	scotchApp.singleClick();
 };
 
 
 
-scotchApp.mapScotch = function(){
+scotchApp.singleClick = function(){
 	$('.scotchInfo').on('click',function(){
-		scotchApp.searchID = $(this).data('id');
-		console.log(scotchApp.searchID)
+			console.log('click')
+			var id = $(this).data('id');
+
+			console.log(id);
+
+			scotchApp.mapScotch(id);
 	});
 }
+
+
+
+scotchApp.mapScotch = function(id){
+	var apiURL = 'http://lcboapi.com/products/' + id;
+	$.ajax({
+		url:apiURL,
+		method:'GET',
+		dataType:'jsonp'
+		
+		}).then(function(res){
+				console.log(res)
+				scotchApp.singleScotch(res.result);
+	});
+};
+	
+
+
+scotchApp.singleScotch = function(single){
+	$('.scotchInfo').hide();
+		var priceInDollars = (single.price_in_cents/ 100).toFixed(2);
+			$('<p>').addClass('scotchPrice').text('$' + single.price_in_cents);
+		var name = $('<h3>').addClass('scotchName').text(single.name);
+		var bottle = $('<img>').addClass('scotchBottle').attr('src',single.image_thumb_url);
+		var variety = $('<p>').addClass('scotchVariety').text(single.varietal);
+		var style = $('<p>').addClass('scotchStyle').text(single.style);
+		var taste = $('<p>').addClass('scotchTaste').text(single.tasting_note);
+		var serve = $('<p>').addClass('scotchServe').text(single.serving_suggestion);
+		var backButton = $('<button>').addClass('backButton').text('Back');
+		var container = $('<div>').addClass('scotchInfo').append(name,priceInDollars,bottle,variety,style,taste,serve,backButton);	
+		$('.results').append(container);
+		// console.log(single.serving_suggestion);
+};
+
+
+
 
 
 
@@ -108,11 +148,12 @@ scotchApp.init = function(){
 	// 	$(#typeOption).on('change',function(){
 	// 		var typeOption = $(this).val();
 	// 	});
-	};
+};
 
 
 
 $(function(){
+	
 	scotchApp.init();
 });
 

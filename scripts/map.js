@@ -1,11 +1,11 @@
-//julian made
-var scotchApp = {};
+// //julian made
+// var scotchApp = {};
 
 
 
 
-$(input[type=submit]).on('submit', function() {
-	var productId = scotchApp.
-});
+// $(input[type=submit]).on('submit', function() {
+// 	var productId = scotchApp.
+// });
 
 
