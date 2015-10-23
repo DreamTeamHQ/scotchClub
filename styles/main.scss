@@ -10,7 +10,7 @@ $cream: #FBFAF3;
 ////////////// MAIN //////////////
 
 main.clubHeader {
-	min-height: calc(100vh - 60px);
+	min-height: calc(100vh - 142px);
 	background: url(../img/hero.jpg) fixed center;
 	background-size: cover;
 	.hero-info {
@@ -83,9 +83,9 @@ form .input-btn {
 	border-radius: 5px;
 	width: calc(50% - 20px);
 	transition: 0.3s;
-	input[type="radio"] {
-		display: none;
-	}
+	// input[type="radio"] {
+	// 	display: none;
+	// }
 }
 
 form .input-btn:hover {
@@ -93,9 +93,13 @@ form .input-btn:hover {
 	color: $brown;
 }
 
-form .input-btn:active {
+form .input-btn:checked {
 	background: $cream;
 	color: $brown;
+}
+
+input[type=radio] {
+	margin-right: 5px;
 }
 
 form input[type=submit] {
@@ -109,6 +113,49 @@ form input[type=submit] {
 	border-radius: 5px;
 	transition: 0.3s;
 }
+
+
+
+////////////// RESULTS //////////////
+
+.results {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 30px 0 142px;
+}
+
+.results-container h2 {
+	font-family: 'Playfair Display', serif;
+	text-align: center;
+	font-size: 4rem;
+	color: $brown;
+}
+
+.scotchInfo {
+	width: 30%;
+	text-align: center;
+	border: 2px solid $brown;
+	border-radius: 5px;
+	background: white;
+	padding: 20px;
+	margin-bottom: 30px;
+	img {
+		display: block;
+		margin: 0 auto;
+	}
+}
+
+h3.scotchName {
+	color: $blue;
+	margin: 0 0 10px;
+	font-family: 'Playfair Display', serif;
+}
+
+
+
+
 
 
 
