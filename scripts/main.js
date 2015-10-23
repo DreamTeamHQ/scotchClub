@@ -4,9 +4,16 @@ scotchApp.apiKey = 'MDpiNWNjYzYyMi03NzY4LTExZTUtOWMxYi01M2MyMTlmYjk0MGU6UVA1bFky
 
 
 
+
+
 scotchApp.formSubmit = function(){
-	
+	$('.submit-form').on('submit',function(e){
+		e.preventDefault();
+		scotchApp.findScotch();
+	});
 };
+
+
 
 
 
@@ -19,16 +26,53 @@ scotchApp.findScotch = function(){
 		data:{
 			key:scotchApp.apiKey,
 			q:'scotch',
+			per_page:100
 		}
 	}).then(function(res){
-		scotchApp.displayScotch(res.result);	
-		scotchApp.blah = res;
+		scotchApp.filterPrice(res.result);
 	});
 };
 
 
 
+
+
+scotchApp.filterPrice = function(result){
+	var threshold = 60
+	var bottleFilter = result.filter(function(value){
+		var priceInDollars = (value.price_in_cents/ 100).toFixed(2);			
+		if($('input[value=over60]:checked').length > 0){
+			return priceInDollars >= threshold && value.image_thumb_url
+		
+		} else {
+			return priceInDollars < threshold && value.image_thumb_url
+
+		} 
+	});
+	scotchApp.filterType(bottleFilter);
+};
+
+
+scotchApp.filterType = function(result){
+	var typeFilter = result.filter(function(value){
+		if($('input[value=single]:checked').length > 0){
+			return value.varietal === 'Scotland Malt'
+		
+		} else {
+			return value.varietal === 'Scotland Blend'
+		}
+	});
+	scotchApp.displayScotch(typeFilter)
+};
+
+
+
+
+
+
 scotchApp.displayScotch = function(lotsOfScotch){
+	$('.clubHeader').hide();
+	$('.results').html('');
 	$.each(lotsOfScotch, function(i,value){
 		var priceInDollars = (value.price_in_cents/ 100).toFixed(2);
 			$('<p>').addClass('scotchPrice').text('$' + value.price_in_cents);
@@ -39,6 +83,12 @@ scotchApp.displayScotch = function(lotsOfScotch){
 		$('.results').append(container);
 	});
 };
+
+
+
+
+
+
 
 
 
@@ -55,9 +105,13 @@ scotchApp.init = function(){
 
 
 
+
+
 $(function(){
 	scotchApp.init();
 });
+
+
 
 
 
