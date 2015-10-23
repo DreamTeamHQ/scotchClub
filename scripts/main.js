@@ -4,12 +4,16 @@ scotchApp.apiKey = 'MDpiNWNjYzYyMi03NzY4LTExZTUtOWMxYi01M2MyMTlmYjk0MGU6UVA1bFky
 
 
 
+
+
 scotchApp.formSubmit = function(){
-	$('.search-form').on('submit',function(e){
-		e.preventDefault;
+	$('.submit-form').on('submit',function(e){
+		e.preventDefault();
 		scotchApp.findScotch();
 	});
 };
+
+
 
 
 
@@ -22,32 +26,43 @@ scotchApp.findScotch = function(){
 		data:{
 			key:scotchApp.apiKey,
 			q:'scotch',
+			per_page:100
 		}
 	}).then(function(res){
-		scotchApp.filter(res.result);
-		// scotchApp.displayScotch(res.result);	
-		scotchApp.blah = res;
+		scotchApp.filterPrice(res.result);
 	});
 };
 
 
 
-scotchApp.filter = function(result){
 
-		if($('input[value=under60]:checked').length > 0){
-			
-			// FILTER HERE
 
-		} else if($('input[value=over60]:checked').length > 0){
-			console.log(result)
-		var expensive = result.filter(function(value){
-			var priceInDollars = (value.price_in_cents/ 100).toFixed(2);
-			console.log(priceInDollars)			
-			return priceInDollars >= 60
-		});
-		scotchApp.displayScotch(expensive);
-		// console.log(expensive);
-	};
+scotchApp.filterPrice = function(result){
+	var threshold = 60
+	var bottleFilter = result.filter(function(value){
+		var priceInDollars = (value.price_in_cents/ 100).toFixed(2);			
+		if($('input[value=over60]:checked').length > 0){
+			return priceInDollars >= threshold && value.image_thumb_url
+		
+		} else {
+			return priceInDollars < threshold && value.image_thumb_url
+
+		} 
+	});
+	scotchApp.filterType(bottleFilter);
+};
+
+
+scotchApp.filterType = function(result){
+	var typeFilter = result.filter(function(value){
+		if($('input[value=single]:checked').length > 0){
+			return value.varietal === 'Scotland Malt'
+		
+		} else {
+			return value.varietal === 'Scotland Blend'
+		}
+	});
+	scotchApp.displayScotch(typeFilter)
 };
 
 
@@ -56,6 +71,8 @@ scotchApp.filter = function(result){
 
 
 scotchApp.displayScotch = function(lotsOfScotch){
+	$('.clubHeader').hide();
+	$('.results').html('');
 	$.each(lotsOfScotch, function(i,value){
 		var priceInDollars = (value.price_in_cents/ 100).toFixed(2);
 			$('<p>').addClass('scotchPrice').text('$' + value.price_in_cents);
@@ -85,6 +102,8 @@ scotchApp.init = function(){
 	// 		var typeOption = $(this).val();
 	// 	});
 	};
+
+
 
 
 
