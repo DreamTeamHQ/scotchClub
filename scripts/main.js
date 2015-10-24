@@ -118,7 +118,7 @@ scotchApp.singleScotch = function(single){
 		var taste = $('<p>').addClass('scotchTaste').text(single.tasting_note);
 		var serve = $('<p>').addClass('scotchServe').text(single.serving_suggestion);
 		var backButton = $('<button>').addClass('backButton').text('Back');
-		var container = $('<div>').addClass('scotchInfo').append(name,priceInDollars,bottle,variety,style,taste,serve,backButton);	
+		var container = $('<div>').addClass('scotchSpecific').append(name,priceInDollars,bottle,variety,style,taste,serve,backButton);	
 		$('.results').append(container);
 		// console.log(single.serving_suggestion);
 };
