@@ -2,6 +2,9 @@ var scotchApp = {};
 
 scotchApp.apiKey = 'MDpiNWNjYzYyMi03NzY4LTExZTUtOWMxYi01M2MyMTlmYjk0MGU6UVA1bFkyNmhBOGg2NUhwQklHYjVUbXhGaVJENnZQS0tHQVR6';
 
+scotchApp.lat = '';
+scotchApp.lng = '';
+
 
 
 scotchApp.formSubmit = function(){
@@ -22,7 +25,8 @@ scotchApp.findScotch = function(){
 		data:{
 			key:scotchApp.apiKey,
 			q:'scotch',
-			per_page:100
+			per_page:100,
+			order:'price_in_cents.asc'	
 		}
 	}).then(function(res){
 		scotchApp.filterPrice(res.result);
@@ -79,16 +83,15 @@ scotchApp.displayScotch = function(lotsOfScotch){
 
 
 
+
 scotchApp.singleClick = function(){
 	$('.scotchInfo').on('click',function(){
-			console.log('click')
 			var id = $(this).data('id');
-
-			console.log(id);
-
 			scotchApp.mapScotch(id);
+			scotchApp.scotchStores();
 	});
 }
+
 
 
 
@@ -99,12 +102,39 @@ scotchApp.mapScotch = function(id){
 		method:'GET',
 		dataType:'jsonp'
 		
-		}).then(function(res){
-				console.log(res)
-				scotchApp.singleScotch(res.result);
+	}).then(function(res){
+		scotchApp.singleScotch(res.result);
 	});
 };
-	
+
+
+
+
+
+scotchApp.scotchStores = function(){
+	var apiURL = 'http://lcboapi.com/stores/';
+	$.ajax({
+		url:apiURL,
+		method:'GET',
+		dataType:'jsonp',
+		data:{
+			key:scotchApp.apiKey,
+			lat: scotchApp.lat,
+			lon: scotchApp.lng
+		}
+	}).then(function(res){
+		mapsdisplayfunction(res.result[0],latitude, res.result[0],longitude);
+		// scotchApp.jksafka;sdfas(res.result[0]);
+	});
+};
+
+
+
+
+
+// We have the product ID.  Must get store IDs close to us.  Using those
+// store IDs, we have to check if product exists in their inventory.
+// List store.
 
 
 scotchApp.singleScotch = function(single){
@@ -114,13 +144,34 @@ scotchApp.singleScotch = function(single){
 		var name = $('<h3>').addClass('scotchName').text(single.name);
 		var bottle = $('<img>').addClass('scotchBottle').attr('src',single.image_thumb_url);
 		var variety = $('<p>').addClass('scotchVariety').text(single.varietal);
-		var style = $('<p>').addClass('scotchStyle').text(single.style);
-		var taste = $('<p>').addClass('scotchTaste').text(single.tasting_note);
-		var serve = $('<p>').addClass('scotchServe').text(single.serving_suggestion);
+		var scotchStyle = '';
+		if (single.style === null){
+			// Do nuffin
+		}
+		else{
+			scotchStyle = single.style
+		}
+		var style = $('<p>').addClass('scotchStyle').text(scotchStyle);
+		var tasting_note = '';
+		if (single.tasting_note === null){
+			//Do nothing
+		}
+		else {
+			tasting_note = single.tasting_note;
+		}
+		var taste = $('<p>').addClass('scotchTaste').text(tasting_note);
+		var serveSugg = '';
+		if (single.serving_suggestion === null){
+			// Do nuffin
+		}
+		else{
+			serveSugg = single.serving_suggestion;
+		}
+		var serve = $('<p>').addClass('scotchServe').text(serveSugg);
 		var backButton = $('<button>').addClass('backButton').text('Back');
-		var container = $('<div>').addClass('scotchInfo').append(name,priceInDollars,bottle,variety,style,taste,serve,backButton);	
+		var container = $('<div>').addClass('scotchSpecific').append(name,priceInDollars,bottle,variety,style,taste,serve,backButton);	
 		$('.results').append(container);
-		// console.log(single.serving_suggestion);
+		// console.log(single.serving_suggestion)
 };
 
 
@@ -128,19 +179,26 @@ scotchApp.singleScotch = function(single){
 
 
 
-
-
-
-
-
-
+scotchApp.backClick = function(){
+	$('.results').on('click', '.backButton', function(){
+		// console.log('lasdf');
+		$('.scotchInfo').show();
+		$('.scotchSpecific').hide();
+	});
+};
 
 
 
 
 
 scotchApp.init = function(){
-	scotchApp.formSubmit();
+	navigator.geolocation.getCurrentPosition(function(res){
+		console.log(res);
+		scotchApp.lat = res.coords.latitude;
+		scotchApp.lng = res.coords.longitude;
+		scotchApp.formSubmit();
+		scotchApp.backClick();
+	});
 	// scotchApp.findScotch();
 	// 	$(#priceOption).on('change',function(){
 	// 		var priceOption = $(this).val();
