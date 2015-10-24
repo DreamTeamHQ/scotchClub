@@ -65,7 +65,7 @@ scotchApp.filterType = function(result){
 
 
 scotchApp.displayScotch = function(lotsOfScotch){
-	$('.clubHeader').hide();
+	$('.clubHeader').fadeOut();
 	$('.results').html('');
 	$.each(lotsOfScotch, function(i,value){
 		var priceInDollars = (value.price_in_cents/ 100).toFixed(2);
@@ -75,6 +75,7 @@ scotchApp.displayScotch = function(lotsOfScotch){
 		var variety = $('<p>').addClass('scotchVariety').text(value.varietal);
 		var container = $('<div>').addClass('scotchInfo').attr('data-id', value.id).append(bottle,name,variety,priceInDollars);
 		$('.results').append(container);
+
 	});
 	scotchApp.singleClick();
 };
@@ -155,7 +156,7 @@ scotchApp.scotchStores = function(){
 
 
 scotchApp.singleScotch = function(single){
-	$('.scotchInfo').hide();
+	$('.scotchInfo').fadeOut();
 		var priceInDollars = (single.price_in_cents/ 100).toFixed(2);
 			$('<p>').addClass('scotchPrice').text('$' + single.price_in_cents);
 		var name = $('<h3>').addClass('scotchName').text(single.name);
@@ -186,7 +187,7 @@ scotchApp.singleScotch = function(single){
 		}
 		var serve = $('<p>').addClass('scotchServe').text(serveSugg);
 		var backButton = $('<button>').addClass('backButton').text('Back');
-		var container = $('<div>').addClass('scotchSpecific').append(name,priceInDollars,bottle,variety,style,taste,serve,backButton);	
+		var container = $('<div>').addClass('scotchSpecific').append(name,bottle,variety,style,taste,serve,priceInDollars,backButton);	
 		$('.results').append(container);
 };
 
@@ -195,6 +196,7 @@ scotchApp.singleScotch = function(single){
 
 scotchApp.showMap = function(){
 	var lcboMap = $('<div>').addClass('theMap');
+	$('.map-size').on('click').fadeIn();
 };
 
 
@@ -204,8 +206,9 @@ scotchApp.showMap = function(){
 
 scotchApp.backClick = function(){
 	$('.results').on('click', '.backButton', function(){
-		$('.scotchInfo').show();
-		$('.scotchSpecific').hide();
+		$('.scotchInfo').fadeIn();
+		$('.scotchSpecific').fadeOut();
+		$('.map-size').fadeOut();
 	});
 };
 
