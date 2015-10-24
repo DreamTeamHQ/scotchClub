@@ -28,6 +28,10 @@
 
 	</main>
 
+	<div class="map-size">
+		<div id="map"></div>
+	</div>
+
 	<section class="results-container">
 		<div class="wrapper">
 			<div class="results"></div>
@@ -44,14 +48,15 @@
 
 				<p>Choose your price point</p>
 				<div class="price-input">
-					<div class="input-btn">
+					<label class="input-btn clicked">
+						under $60
 						<input type="radio" name="price" id="under60" value="under60">
-						<label for="under60">under $60</label>
-					</div> <!-- /.price-btn -->
-					<div class="input-btn">
+					</label>
+					
+					<label class="input-btn clicked">
+						over $60
 						<input type="radio" name="price" id="over60" value="over60">
-						<label for="over60">over $60</label>
-					</div> <!-- /.price-btn -->
+					</label>
 				</div> <!-- /.price-input -->
 
 			</div> <!-- /.input-left -->
@@ -61,14 +66,16 @@
 
 				<p>Select your type</p>
 				<div class="type-input">
-					<div class="input-btn">
+					<label class="input-btn clicked">
+						Single Malt
 						<input type="radio" name="type" id="typeSingle" value="single">
-						<label for="typeSingle">Single Malt</label>
-					</div> <!-- /.input-btn -->
-					<div class="input-btn">
+					</label> <!-- /.input-btn -->
+
+					<label class="input-btn clicked">
+						Blended
 						<input type="radio" name="type" id="typeBlended" value="blend">
-						<label for="typeBlended">Blended</label>
-					</div> <!-- /.input-btn -->
+					</label> 
+
 				</div> <!-- /.type-input -->
 
 			</div> <!-- /.input-left -->
