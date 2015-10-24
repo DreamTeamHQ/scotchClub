@@ -41,10 +41,8 @@ scotchApp.filterPrice = function(result){
 		var priceInDollars = (value.price_in_cents/ 100).toFixed(2);			
 		if($('input[value=over60]:checked').length > 0){
 			return priceInDollars >= threshold && value.image_thumb_url
-		
 		} else {
 			return priceInDollars < threshold && value.image_thumb_url
-
 		} 
 	});
 	scotchApp.filterType(bottleFilter);
@@ -56,13 +54,13 @@ scotchApp.filterType = function(result){
 	var typeFilter = result.filter(function(value){
 		if($('input[value=single]:checked').length > 0){
 			return value.varietal === 'Scotland Malt'
-		
 		} else {
 			return value.varietal === 'Scotland Blend'
 		}
 	});
 	scotchApp.displayScotch(typeFilter)
 };
+
 
 
 
@@ -87,6 +85,7 @@ scotchApp.displayScotch = function(lotsOfScotch){
 scotchApp.singleClick = function(){
 	$('.scotchInfo').on('click',function(){
 			var id = $(this).data('id');
+			initMap();
 			scotchApp.mapScotch(id);
 			scotchApp.scotchStores();
 	});
@@ -110,6 +109,25 @@ scotchApp.mapScotch = function(id){
 
 
 
+function initMap() {
+  var myLatLng = {lat:scotchApp.lat, lng:scotchApp.lng};
+  // Create a map object and specify the DOM element for display.
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: myLatLng,
+    scrollwheel: false,
+    zoom: 15
+  });
+  // Create a marker and set its position.
+  var marker = new google.maps.Marker({
+    map: map,
+    position: myLatLng,
+    title: 'LCBO'
+  });
+  scotchApp.showMap();
+}
+
+
+
 
 scotchApp.scotchStores = function(){
 	var apiURL = 'http://lcboapi.com/stores/';
@@ -123,11 +141,10 @@ scotchApp.scotchStores = function(){
 			lon: scotchApp.lng
 		}
 	}).then(function(res){
-		mapsdisplayfunction(res.result[0],latitude, res.result[0],longitude);
+		scotchApp.showMap(res.result[0],scotchApp.lat, res.result[0],scotchApp.lng);
 		// scotchApp.jksafka;sdfas(res.result[0]);
 	});
 };
-
 
 
 
@@ -171,7 +188,13 @@ scotchApp.singleScotch = function(single){
 		var backButton = $('<button>').addClass('backButton').text('Back');
 		var container = $('<div>').addClass('scotchSpecific').append(name,priceInDollars,bottle,variety,style,taste,serve,backButton);	
 		$('.results').append(container);
-		// console.log(single.serving_suggestion)
+};
+
+
+
+
+scotchApp.showMap = function(){
+	var lcboMap = $('<div>').addClass('theMap');
 };
 
 
@@ -181,7 +204,6 @@ scotchApp.singleScotch = function(single){
 
 scotchApp.backClick = function(){
 	$('.results').on('click', '.backButton', function(){
-		// console.log('lasdf');
 		$('.scotchInfo').show();
 		$('.scotchSpecific').hide();
 	});
@@ -211,7 +233,6 @@ scotchApp.init = function(){
 
 
 $(function(){
-	
 	scotchApp.init();
 });
 
@@ -229,6 +250,8 @@ $(function(){
 // of the bottle will bring up additional information
 // and a map to the nearest LCBO with the desired product
 // in stock.
+
+
 
 
 
