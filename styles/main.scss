@@ -17,6 +17,7 @@ main.clubHeader {
 		position: absolute;
 		left: 50%;
 		top: 50%;
+		width: 50%;
 		transform: translate(-50%, -60%);
 		text-align: center;
 		color: $cream;
@@ -83,9 +84,9 @@ form .input-btn {
 	border-radius: 5px;
 	width: calc(50% - 20px);
 	transition: 0.3s;
-	// input[type="radio"] {
-	// 	display: none;
-	// }
+	input[type="radio"] {
+		display: none;
+	}
 }
 
 form .input-btn:hover {
@@ -93,10 +94,9 @@ form .input-btn:hover {
 	color: $brown;
 }
 
-form .input-btn:checked {
-	background: $cream;
-	color: $brown;
-}
+
+
+
 
 input[type=radio] {
 	margin-right: 5px;
@@ -106,7 +106,7 @@ form input[type=submit] {
 	font-family: 'Open Sans', sans-serif;
 	background: $cream;
 	color: $brown;
-	padding: 13px;
+	padding: 16px;
 	border: 1px solid $cream;
 	text-align: center;
 	margin: 37px 10px 0;
@@ -122,7 +122,7 @@ form input[type=submit] {
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
-	justify-content: space-between;
+	// justify-content: space-around;
 	padding: 30px 0 142px;
 }
 
@@ -134,13 +134,15 @@ form input[type=submit] {
 }
 
 .scotchInfo {
-	width: 30%;
+	width: calc(33% - 40px);
+	margin: 30px 20px;
 	text-align: center;
 	border: 2px solid $brown;
 	border-radius: 5px;
 	background: white;
 	padding: 20px;
-	margin-bottom: 30px;
+	cursor: pointer;
+	// margin-bottom: 30px;
 	img {
 		display: block;
 		margin: 0 auto;
@@ -153,22 +155,155 @@ h3.scotchName {
 	font-family: 'Playfair Display', serif;
 }
 
+// .select {
+// 	position: absolute;
+// 	top: 0;
+// 	left: 0;
+// 	z-index: 999;
+// 	background: $blue;
+// 	padding: 10px;
+// }
+
+
+.map-size {
+	position: absolute;
+	right: 30px;
+	top: 30px;
+	width: 50%;
+	height: 100%;
+	display: none;
+}
+
+#map {
+	width: 100%;
+	height: 100%;
+}
 
 
 ////////////// SPECIFIC //////////////
 
 .scotchSpecific {
-	width: 45%;
-	border: 2px solid $brown;
-	border-radius: 5px;
+	width: 50%;
 	background: white;
-	padding: 30px;
-	text-align: center;
+	padding: 30px 50px;
+	img {
+		text-align: center;
+	}
 }
 
 .scotchSpecific p {
 	margin: 10px 0;
 }
 
+.backButton {
+	display: block;
+	background: $blue;
+	color: $cream;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 20px;
+	margin-top: 10px;
+}
+
+
+
+////////////// MEDIA QUERIES //////////////
+
+@media all and (max-width: 768px) {
+	main.clubHeader {
+		.hero-info {
+			width: 75%;
+		}
+	}
+}
+
+@media all and (max-width: 620px) {
+	label {
+		font-size: 1.4rem;
+	}
+	
+	.scotchInfo {
+		width: 45%;
+	}
+
+}
+
+
+@media all and (max-width: 505px) {
+	main.clubHeader {
+		.hero-info {
+			width: 90%;
+		}
+	}
+}
+
+@media all and (max-width: 468px) {
+	
+	main.clubHeader {
+		background: url(../img/hero.jpg) fixed bottom;
+		.hero-info {
+			top: 50%;
+			transform: translate(-50%, -90%);
+		}
+	}
+
+
+	.hero-info img {
+		width: 30%;
+	}
+
+	h1 {
+		font-size: 2em;
+		margin: 0;
+	}
+
+	form .wrapper {
+		flex-direction: column;
+	}
+
+	form {
+		.input-left, .input-right {
+			width: 100%;
+			margin-bottom: 20px;
+		}
+	}
+
+	.submit {
+		margin: 0 auto;
+		width: 50%;
+	}
+
+	form input[type=submit] {
+		margin: 0;
+		width: 100%;
+	}
+
+	.scotchInfo {
+		width: 80%;
+		img {
+			width: 50%;
+		}
+	}
+}
+
+@media all and (max-width: 320px) {
+	
+	main.clubHeader {
+		min-height: calc(100vh - 275px);
+	}
+
+	.input-left p, .input-right p {
+		margin-bottom: 10px;
+	}
+
+	form .input-btn {
+		padding: 10px;
+	}
+
+	form input[type=submit] {
+		padding: 10px;
+	}
+	
+}
 
 

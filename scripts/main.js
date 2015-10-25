@@ -1,9 +1,8 @@
 var scotchApp = {};
 
 scotchApp.apiKey = 'MDpiNWNjYzYyMi03NzY4LTExZTUtOWMxYi01M2MyMTlmYjk0MGU6UVA1bFkyNmhBOGg2NUhwQklHYjVUbXhGaVJENnZQS0tHQVR6';
-
 scotchApp.lat = '';
-scotchApp.lng = '';
+scotchApp.lon = '';
 
 
 
@@ -11,6 +10,7 @@ scotchApp.formSubmit = function(){
 	$('.submit-form').on('submit',function(e){
 		e.preventDefault();
 		scotchApp.findScotch();
+		$('.map-size').fadeOut();
 	});
 };
 
@@ -65,7 +65,7 @@ scotchApp.filterType = function(result){
 
 
 scotchApp.displayScotch = function(lotsOfScotch){
-	$('.clubHeader').hide();
+	$('.clubHeader').fadeOut();
 	$('.results').html('');
 	$.each(lotsOfScotch, function(i,value){
 		var priceInDollars = (value.price_in_cents/ 100).toFixed(2);
@@ -75,6 +75,7 @@ scotchApp.displayScotch = function(lotsOfScotch){
 		var variety = $('<p>').addClass('scotchVariety').text(value.varietal);
 		var container = $('<div>').addClass('scotchInfo').attr('data-id', value.id).append(bottle,name,variety,priceInDollars);
 		$('.results').append(container);
+
 	});
 	scotchApp.singleClick();
 };
@@ -87,7 +88,7 @@ scotchApp.singleClick = function(){
 			var id = $(this).data('id');
 			scotchApp.mapScotch(id);
 			scotchApp.scotchStores();
-			initMap();
+			scotchApp.initMap();
 	});
 }
 
@@ -107,10 +108,27 @@ scotchApp.mapScotch = function(id){
 };
 
 
+scotchApp.scotchStores = function(){
+	var apiURL = 'http://lcboapi.com/stores/';
+	$.ajax({
+		url:apiURL,
+		method:'GET',
+		dataType:'jsonp',
+		data:{
+			key:scotchApp.apiKey,
+			lat: scotchApp.lat,
+			lon: scotchApp.lng
+		}
+	}).then(function(res){
+		scotchApp.initMap(res.result[0].latitude, res.result[0].longitude);
+		console.log(res);
+	});
+};
 
 
-function initMap() {
-  var myLatLng = {lat:scotchApp.lat, lng:scotchApp.lng};
+
+scotchApp.initMap = function(lat,lng) {
+  var myLatLng = {lat:lat, lng:lng};
   // Create a map object and specify the DOM element for display.
   var map = new google.maps.Map(document.getElementById('map'), {
     center: myLatLng,
@@ -129,22 +147,6 @@ function initMap() {
 
 
 
-scotchApp.scotchStores = function(){
-	var apiURL = 'http://lcboapi.com/stores/';
-	$.ajax({
-		url:apiURL,
-		method:'GET',
-		dataType:'jsonp',
-		data:{
-			key:scotchApp.apiKey,
-			lat: scotchApp.lat,
-			lon: scotchApp.lng
-		}
-	}).then(function(res){
-		scotchApp.showMap(res.result[0],scotchApp.lat, res.result[0],scotchApp.lng);
-		// scotchApp.jksafka;sdfas(res.result[0]);
-	});
-};
 
 
 
@@ -155,7 +157,7 @@ scotchApp.scotchStores = function(){
 
 
 scotchApp.singleScotch = function(single){
-	$('.scotchInfo').hide();
+	$('.scotchInfo').fadeOut();
 		var priceInDollars = (single.price_in_cents/ 100).toFixed(2);
 			$('<p>').addClass('scotchPrice').text('$' + single.price_in_cents);
 		var name = $('<h3>').addClass('scotchName').text(single.name);
@@ -186,7 +188,7 @@ scotchApp.singleScotch = function(single){
 		}
 		var serve = $('<p>').addClass('scotchServe').text(serveSugg);
 		var backButton = $('<button>').addClass('backButton').text('Back');
-		var container = $('<div>').addClass('scotchSpecific').append(name,priceInDollars,bottle,variety,style,taste,serve,backButton);	
+		var container = $('<div>').addClass('scotchSpecific').append(name,bottle,variety,style,taste,serve,priceInDollars,backButton);	
 		$('.results').append(container);
 };
 
@@ -195,7 +197,7 @@ scotchApp.singleScotch = function(single){
 
 scotchApp.showMap = function(){
 	var lcboMap = $('<div>').addClass('theMap');
-	$('.map-size').on('click').show();
+	$('.map-size').on('click').fadeIn();
 };
 
 
@@ -205,8 +207,9 @@ scotchApp.showMap = function(){
 
 scotchApp.backClick = function(){
 	$('.results').on('click', '.backButton', function(){
-		$('.scotchInfo').show();
-		$('.scotchSpecific').hide();
+		$('.scotchInfo').fadeIn();
+		$('.scotchSpecific').fadeOut();
+		$('.map-size').fadeOut();
 	});
 };
 

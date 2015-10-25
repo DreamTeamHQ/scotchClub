@@ -169,6 +169,7 @@ main.clubHeader {
     position: absolute;
     left: 50%;
     top: 50%;
+    width: 50%;
     -webkit-transform: translate(-50%, -60%);
             transform: translate(-50%, -60%);
     text-align: center;
@@ -234,12 +235,10 @@ form .input-btn {
   border-radius: 5px;
   width: calc(50% - 20px);
   transition: 0.3s; }
+  form .input-btn input[type="radio"] {
+    display: none; }
 
 form .input-btn:hover {
-  background: #FBFAF3;
-  color: #381213; }
-
-form .input-btn:checked {
   background: #FBFAF3;
   color: #381213; }
 
@@ -250,7 +249,7 @@ form input[type=submit] {
   font-family: 'Open Sans', sans-serif;
   background: #FBFAF3;
   color: #381213;
-  padding: 13px;
+  padding: 16px;
   border: 1px solid #FBFAF3;
   text-align: center;
   margin: 37px 10px 0;
@@ -267,9 +266,6 @@ form input[type=submit] {
   -webkit-flex-direction: row;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   padding: 30px 0 142px; }
 
 .results-container h2 {
@@ -279,13 +275,14 @@ form input[type=submit] {
   color: #381213; }
 
 .scotchInfo {
-  width: 30%;
+  width: calc(33% - 40px);
+  margin: 30px 20px;
   text-align: center;
   border: 2px solid #381213;
   border-radius: 5px;
   background: white;
   padding: 20px;
-  margin-bottom: 30px; }
+  cursor: pointer; }
   .scotchInfo img {
     display: block;
     margin: 0 auto; }
@@ -295,13 +292,87 @@ h3.scotchName {
   margin: 0 0 10px;
   font-family: 'Playfair Display', serif; }
 
+.map-size {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  width: 50%;
+  height: 100%;
+  display: none; }
+
+#map {
+  width: 100%;
+  height: 100%; }
+
 .scotchSpecific {
-  width: 45%;
-  border: 2px solid #381213;
-  border-radius: 5px;
+  width: 50%;
   background: white;
-  padding: 30px;
-  text-align: center; }
+  padding: 30px 50px; }
+  .scotchSpecific img {
+    text-align: center; }
 
 .scotchSpecific p {
   margin: 10px 0; }
+
+.backButton {
+  display: block;
+  background: #0064BD;
+  color: #FBFAF3;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-top: 10px; }
+
+@media all and (max-width: 768px) {
+  main.clubHeader .hero-info {
+    width: 75%; } }
+
+@media all and (max-width: 620px) {
+  label {
+    font-size: 1.4rem; }
+  .scotchInfo {
+    width: 45%; } }
+
+@media all and (max-width: 505px) {
+  main.clubHeader .hero-info {
+    width: 90%; } }
+
+@media all and (max-width: 468px) {
+  main.clubHeader {
+    background: url(../img/hero.jpg) fixed bottom; }
+    main.clubHeader .hero-info {
+      top: 50%;
+      -webkit-transform: translate(-50%, -90%);
+              transform: translate(-50%, -90%); }
+  .hero-info img {
+    width: 30%; }
+  h1 {
+    font-size: 2em;
+    margin: 0; }
+  form .wrapper {
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column; }
+  form .input-left, form .input-right {
+    width: 100%;
+    margin-bottom: 20px; }
+  .submit {
+    margin: 0 auto;
+    width: 50%; }
+  form input[type=submit] {
+    margin: 0;
+    width: 100%; }
+  .scotchInfo {
+    width: 80%; }
+    .scotchInfo img {
+      width: 50%; } }
+
+@media all and (max-width: 320px) {
+  main.clubHeader {
+    min-height: calc(100vh - 275px); }
+  .input-left p, .input-right p {
+    margin-bottom: 10px; }
+  form .input-btn {
+    padding: 10px; }
+  form input[type=submit] {
+    padding: 10px; } }
