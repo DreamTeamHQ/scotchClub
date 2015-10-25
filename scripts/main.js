@@ -1,9 +1,8 @@
 var scotchApp = {};
 
 scotchApp.apiKey = 'MDpiNWNjYzYyMi03NzY4LTExZTUtOWMxYi01M2MyMTlmYjk0MGU6UVA1bFkyNmhBOGg2NUhwQklHYjVUbXhGaVJENnZQS0tHQVR6';
-
 scotchApp.lat = '';
-scotchApp.lng = '';
+scotchApp.lon = '';
 
 
 
@@ -87,9 +86,9 @@ scotchApp.displayScotch = function(lotsOfScotch){
 scotchApp.singleClick = function(){
 	$('.scotchInfo').on('click',function(){
 			var id = $(this).data('id');
-			initMap();
 			scotchApp.mapScotch(id);
 			scotchApp.scotchStores();
+			scotchApp.initMap();
 	});
 }
 
@@ -109,10 +108,27 @@ scotchApp.mapScotch = function(id){
 };
 
 
+scotchApp.scotchStores = function(){
+	var apiURL = 'http://lcboapi.com/stores/';
+	$.ajax({
+		url:apiURL,
+		method:'GET',
+		dataType:'jsonp',
+		data:{
+			key:scotchApp.apiKey,
+			lat: scotchApp.lat,
+			lon: scotchApp.lng
+		}
+	}).then(function(res){
+		scotchApp.initMap(res.result[0].latitude, res.result[0].longitude);
+		console.log(res);
+	});
+};
 
 
-function initMap() {
-  var myLatLng = {lat:scotchApp.lat, lng:scotchApp.lng};
+
+scotchApp.initMap = function(lat,lng) {
+  var myLatLng = {lat:lat, lng:lng};
   // Create a map object and specify the DOM element for display.
   var map = new google.maps.Map(document.getElementById('map'), {
     center: myLatLng,
@@ -131,22 +147,6 @@ function initMap() {
 
 
 
-scotchApp.scotchStores = function(){
-	var apiURL = 'http://lcboapi.com/stores/';
-	$.ajax({
-		url:apiURL,
-		method:'GET',
-		dataType:'jsonp',
-		data:{
-			key:scotchApp.apiKey,
-			lat: scotchApp.lat,
-			lon: scotchApp.lng
-		}
-	}).then(function(res){
-		scotchApp.showMap(res.result[0],scotchApp.lat, res.result[0],scotchApp.lng);
-		// scotchApp.jksafka;sdfas(res.result[0]);
-	});
-};
 
 
 
