@@ -85,9 +85,9 @@ scotchApp.displayScotch = function(lotsOfScotch){
 scotchApp.singleClick = function(){
 	$('.scotchInfo').on('click',function(){
 			var id = $(this).data('id');
-			initMap();
 			scotchApp.mapScotch(id);
 			scotchApp.scotchStores();
+			initMap();
 	});
 }
 
@@ -195,6 +195,7 @@ scotchApp.singleScotch = function(single){
 
 scotchApp.showMap = function(){
 	var lcboMap = $('<div>').addClass('theMap');
+	$('.map-size').on('click').show();
 };
 
 
