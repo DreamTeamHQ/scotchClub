@@ -11,6 +11,7 @@ scotchApp.formSubmit = function(){
 	$('.submit-form').on('submit',function(e){
 		e.preventDefault();
 		scotchApp.findScotch();
+		$('.map-size').fadeOut();
 	});
 };
 

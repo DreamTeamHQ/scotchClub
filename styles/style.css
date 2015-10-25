@@ -281,7 +281,8 @@ form input[type=submit] {
   border: 2px solid #381213;
   border-radius: 5px;
   background: white;
-  padding: 20px; }
+  padding: 20px;
+  cursor: pointer; }
   .scotchInfo img {
     display: block;
     margin: 0 auto; }
@@ -293,10 +294,10 @@ h3.scotchName {
 
 .map-size {
   position: absolute;
-  right: 0;
+  right: 30px;
   top: 30px;
   width: 50%;
-  height: 80%;
+  height: 100%;
   display: none; }
 
 #map {
@@ -306,10 +307,21 @@ h3.scotchName {
 .scotchSpecific {
   width: 50%;
   background: white;
-  padding: 30px; }
+  padding: 30px 50px; }
+  .scotchSpecific img {
+    text-align: center; }
 
 .scotchSpecific p {
   margin: 10px 0; }
+
+.backButton {
+  display: block;
+  background: #0064BD;
+  color: #FBFAF3;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-top: 10px; }
 
 @media all and (max-width: 768px) {
   main.clubHeader .hero-info {

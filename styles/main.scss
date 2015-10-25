@@ -141,6 +141,7 @@ form input[type=submit] {
 	border-radius: 5px;
 	background: white;
 	padding: 20px;
+	cursor: pointer;
 	// margin-bottom: 30px;
 	img {
 		display: block;
@@ -166,10 +167,10 @@ h3.scotchName {
 
 .map-size {
 	position: absolute;
-	right: 0;
+	right: 30px;
 	top: 30px;
 	width: 50%;
-	height: 80%;
+	height: 100%;
 	display: none;
 }
 
@@ -184,13 +185,25 @@ h3.scotchName {
 .scotchSpecific {
 	width: 50%;
 	background: white;
-	padding: 30px;
+	padding: 30px 50px;
+	img {
+		text-align: center;
+	}
 }
 
 .scotchSpecific p {
 	margin: 10px 0;
 }
 
+.backButton {
+	display: block;
+	background: $blue;
+	color: $cream;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 20px;
+	margin-top: 10px;
+}
 
 
 
