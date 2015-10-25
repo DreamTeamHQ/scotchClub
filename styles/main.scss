@@ -76,6 +76,7 @@ form .price-input, form .type-input {
 	cursor: pointer;
 }
 
+
 form .input-btn {
 	padding: 15px;
 	border: 1px solid $cream;
@@ -89,13 +90,15 @@ form .input-btn {
 	}
 }
 
-form .input-btn:hover {
+.clicked {
 	background: $cream;
 	color: $brown;
 }
 
-
-
+form .input-btn:hover {
+	background: $cream;
+	color: $brown;
+}
 
 
 input[type=radio] {
@@ -118,12 +121,18 @@ form input[type=submit] {
 
 ////////////// RESULTS //////////////
 
+.selectHeader {
+	display: none;
+	margin: 30px 0 0;
+	color: $blue;
+}
+
 .results {
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
 	// justify-content: space-around;
-	padding: 30px 0 142px;
+	padding: 30px 0 112px;
 }
 
 .results-container h2 {
@@ -149,29 +158,39 @@ form input[type=submit] {
 	}
 }
 
+.selectButton {
+	background: $blue;
+	color: $cream;
+	border-radius: 5px;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
 h3.scotchName {
 	color: $blue;
 	margin: 0 0 10px;
 	font-family: 'Playfair Display', serif;
+	font-size: 1.8rem;
 }
-
-// .select {
-// 	position: absolute;
-// 	top: 0;
-// 	left: 0;
-// 	z-index: 999;
-// 	background: $blue;
-// 	padding: 10px;
-// }
 
 
 .map-size {
 	position: absolute;
-	right: 30px;
+	right: 0;
 	top: 30px;
 	width: 50%;
 	height: 100%;
+	padding: 30px;
+	margin-right: 30px;
+	background: white;
 	display: none;
+}
+
+.map-size h3 {
+	color: $blue;
+	margin: 0 0 30px;
+	font-family: 'Playfair Display', serif;
+	font-size: 1.8rem;
 }
 
 #map {
@@ -215,15 +234,27 @@ h3.scotchName {
 			width: 75%;
 		}
 	}
+	
+	.scotchInfo {
+		width: calc(50% - 40px);
+	}
+
 }
 
 @media all and (max-width: 620px) {
 	label {
 		font-size: 1.4rem;
 	}
-	
-	.scotchInfo {
-		width: 45%;
+
+	.scotchSpecific {
+		width: 100%;
+	}
+
+	.map-size {
+		position: inherit;
+		width: 100%;
+		height: 300px;
+		padding: 30px;
 	}
 
 }
@@ -234,6 +265,10 @@ h3.scotchName {
 		.hero-info {
 			width: 90%;
 		}
+	}
+
+	.scotchInfo {
+		width: 100%;
 	}
 }
 
@@ -279,18 +314,17 @@ h3.scotchName {
 	}
 
 	.scotchInfo {
-		width: 80%;
 		img {
 			width: 50%;
 		}
 	}
+
+	.results {
+		padding: 30px 0 320px;
+	}
 }
 
 @media all and (max-width: 320px) {
-	
-	main.clubHeader {
-		min-height: calc(100vh - 275px);
-	}
 
 	.input-left p, .input-right p {
 		margin-bottom: 10px;
@@ -302,6 +336,10 @@ h3.scotchName {
 
 	form input[type=submit] {
 		padding: 10px;
+	}
+
+	.results {
+		padding: 30px 0 300px;
 	}
 	
 }

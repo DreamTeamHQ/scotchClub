@@ -66,6 +66,7 @@ scotchApp.filterType = function(result){
 
 scotchApp.displayScotch = function(lotsOfScotch){
 	$('.clubHeader').fadeOut();
+	$('.selectHeader').show();
 	$('.results').html('');
 	$.each(lotsOfScotch, function(i,value){
 		var priceInDollars = (value.price_in_cents/ 100).toFixed(2);
@@ -73,7 +74,8 @@ scotchApp.displayScotch = function(lotsOfScotch){
 		var name = $('<h3>').addClass('scotchName').text(value.name);
 		var bottle = $('<img>').addClass('scotchBottle').attr('src',value.image_thumb_url);
 		var variety = $('<p>').addClass('scotchVariety').text(value.varietal);
-		var container = $('<div>').addClass('scotchInfo').attr('data-id', value.id).append(bottle,name,variety,priceInDollars);
+		var selectButton = $('<p>').addClass('selectButton').text('Select');
+		var container = $('<div>').addClass('scotchInfo').attr('data-id', value.id).append(bottle,selectButton,name,variety,priceInDollars);
 		$('.results').append(container);
 
 	});
@@ -89,6 +91,7 @@ scotchApp.singleClick = function(){
 			scotchApp.mapScotch(id);
 			scotchApp.scotchStores();
 			scotchApp.initMap();
+			$('.selectHeader').hide();
 	});
 }
 
@@ -210,16 +213,22 @@ scotchApp.backClick = function(){
 		$('.scotchInfo').fadeIn();
 		$('.scotchSpecific').fadeOut();
 		$('.map-size').fadeOut();
+		$('.selectHeader').show();
 	});
 };
 
-
+scotchApp.formSelect = function() {
+	$('.input-btn').click(function() {
+		$(this).toggleClass('clicked');
+	});
+};
 
 
 
 scotchApp.init = function(){
 	navigator.geolocation.getCurrentPosition(function(res){
 		console.log(res);
+		scotchApp.formSelect();
 		scotchApp.lat = res.coords.latitude;
 		scotchApp.lng = res.coords.longitude;
 		scotchApp.formSubmit();
